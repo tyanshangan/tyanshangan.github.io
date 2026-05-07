@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publications | Jieming Yin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { 
+            --bg: #ffffff; 
+            --text: #1a1a1a; 
+            --muted: #64748b; 
+            --accent: #005499; 
+            --accent-soft: #f0f2ff; 
+            --card-border: #f1f5f9; 
+            --ccf-a: #dc2626; /* Red for CCF-A */
+            --venue-color: #373A3C; /* Indigo for Venues */
+        }
+
+        @keyframes fadeInPage {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--bg); color: var(--text); 
+            line-height: 1.6; margin: 0; padding: 0;
+            animation: fadeInPage 0.8s ease-out forwards;
+        }
+
+        /* --- Navigation & Hover Effects --- */
+        nav { 
+            position: sticky; 
+            top: 0; 
+            background: rgba(255, 255, 255, 0.9); 
+            backdrop-filter: blur(10px); 
+            z-index: 1000; 
+            padding: 20px 0; 
+            border-bottom: 1px solid var(--card-border); 
+        }
+        
+        .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; position: relative; }
+
+        .nav-links { display: flex; align-items: center; }
+        .nav-links a { 
+            text-decoration: none; 
+            color: var(--muted); 
+            margin-left: 25px; 
+            font-weight: 700; 
+            font-size: 1.05rem; 
+            position: relative; 
+            padding-bottom: 4px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover { color: var(--accent); }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a.active { color: var(--accent); font-size: 1.25rem; }
+        .nav-links a.active::after { width: 100%; }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--accent);
+            cursor: pointer;
+        }
+		
+        /* --- Content Layout --- */
+        h1 { font-size: 2.5rem; font-weight: 800; margin: 60px 0 10px; letter-spacing: -1px; }
+        .year-header {
+			font-size: 1.4rem;
+			font-weight: 700;
+			color: var(--text);
+			margin: 50px 0 25px;
+			display: flex;
+			align-items: center;
+			gap: 15px;
+			border-left: 6px solid var(--accent);
+			padding-left: 15px;
+		}
+        .year-header::after { content: ""; height: 1px; flex-grow: 1; background: var(--card-border); }
+
+        .card {
+            padding: 15px;
+			padding-left: 20px;		
+			border: 1px solid var(--card-border);
+			border-radius: 16px;
+			margin-bottom: 10px;
+			transition: 0.3s;
+			background: #fff;
+		}
+        .card:hover { border-color: var(--accent-soft); box-shadow: 0 12px 30px rgba(99, 102, 241, 0.08); transform: translateY(-3px); }
+        
+        .pub-title {
+			font-weight: 700;
+			font-size: 1.1rem;
+			color: var(--text);
+			line-height: 1.4;
+			display: block;
+			margin-bottom: 8px;
+			text-decoration: none;
+		}
+        .pub-title:hover { color: var(--accent); text-decoration: underline; }
+        
+        .pub-authors {
+			color: var(--muted);
+			font-size: 0.9rem;
+			margin-bottom: 8px;
+			line-height: 1.5;
+		}
+        .pub-authors b { color: var(--text); font-weight: 700; }
+        
+        .venue-text { color: var(--venue-color); font-weight: 600; font-size: 0.9rem; font-style: italic; }
+
+        /* Badge Styling */
+        .badge {
+			font-size: 0.8rem;
+			font-weight: 800;
+			padding: 3px 8px;
+			border-radius: 4px;
+			margin-left: 8px;
+			text-transform: uppercase;
+			vertical-align: middle;
+			border: 1px solid transparent;
+			font-style: normal;
+		}
+        .badge-ccf-a { color: var(--ccf-a); border-color: #fee2e2; background: #fef2f2; }
+        .badge-ccf-b { color: #475569; border-color: #e2e8f0; background: #f1f5f9; }
+        .badge-ccf-c { color: #475569; border-color: #e2e8f0; background: #f1f5f9; }
+        
+        .award-text { color: var(--ccf-a); font-weight: 700; font-size: 0.85rem; display: block; margin-top: 5px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        footer { margin-top: 80px; padding: 40px 0; border-top: 1px solid var(--card-border); text-align: center; color: var(--muted); font-size: 0.85rem; }
+		
+        /* --- RESPONSIVE QUERIES --- */
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            
+            .nav-links { 
+                display: none; 
+                flex-direction: column; 
+                position: absolute; 
+                top: 100%; 
+                left: 0; 
+                right: 0; 
+                background: white; 
+                padding: 20px; 
+                border-bottom: 1px solid var(--card-border);
+                box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+            }
+
+            .nav-links.active { display: flex; }
+            .nav-links a { margin: 10px 0; font-size: 1.1rem; }
+
+            .hero { flex-direction: column; text-align: center; gap: 30px; margin: 40px 0; }
+            .hero-text { display: flex; flex-direction: column; align-items: center; }
+            h1 { font-size: 2.2rem; }
+            .social-row { justify-content: center; }
+            
+            .profile-img { width: 150px; height: 190px; }
+        }
+	</style>
+</head>
+<body>
+
+    <nav>
+        <div class="container nav-content">
+            <div style="font-weight: 800; color: var(--accent); font-size: 1.4rem; cursor: pointer;">Jieming Yin</div>
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="nav-links" id="nav-list">
+                <a href="index.html">About</a>
+                <a href="publications.html" class="active">Publications</a>
+                <a href="people.html">People</a>
+                <a href="teaching.html">Teaching</a>				
+                <a href="service.html">Service</a>
+            </div>
+        </div>
+    </nav>
+
+	
+    <div class="container">
+        <h1>Publications</h1>
+
+        <div class="year-header">2026</div>
+		
+        <div class="card">
+            <a href="https://www.sciencedirect.com/science/article/abs/pii/S0097849325003693" class="pub-title">From pseudo-to non-correspondences: Robust point cloud registration via thickness-guided self-correction</a>
+            <div class="pub-authors">Yifei Tian, Xiangyu Li, <b>Jieming Yin</b></div>
+            <div class="venue-text">Computers & Graphics, Volume 134, February 2026.</div>
+        </div>
+
+        <div class="year-header">2025</div>
+		
+        <div class="card">
+            <a href="docs/MICRO2025.pdf" class="pub-title">LEGOSim: A Unified Parallel Simulation Framework for Multi-chiplet Heterogeneous Integration</a>
+            <div class="pub-authors">Tiantian Lin, Cheng Qiu, Xiaohang Wang, Ling Wang, Zhulin Zheng, Yingtao Jiang, Amit Kumar Singh, <b>Jieming Yin</b>, Sihai Qiu, Xiaodong Li, Xin Tang, Jie Song, Mingzhe Zhang, Kui Ren</div>
+            <div class="venue-text">58th IEEE/ACM International Symposium on Microarchitecture (MICRO), 2025. <span class="badge badge-ccf-a">CCF-A</span></div>
+        </div>
+
+        <div class="card">
+            <a href="docs/DAC2025.pdf" class="pub-title">FineRR-ZNS: Enabling Fine-Granularity Read Refreshing for ZNS SSDs</a>
+            <div class="pub-authors">Jun Li, Zhibing Sha, Fan Yang, Xiaofei Xu, Xiaobai Chen, <b>Jieming Yin</b>, Jianwei Liao</div>
+            <div class="venue-text">62nd Annual Design Automation Conference (DAC), 2025. <span class="badge badge-ccf-a">CCF-A</span></div>
+        </div>
+
+        <div class="card">
+            <a href="docs/ISCAS2025_FlexAcc.pdf" class="pub-title">FlexAcc: Accelerating Batch Normalization through GPU-FPGA Integration</a>
+            <div class="pub-authors">Haishuai Zhang, Zhihao Li, Pengyang Li, Xuehuai Shi, Xiaobai Chen, <b>Jieming Yin</b></div>
+            <div class="venue-text">IEEE International Symposium on Circuits and Systems (ISCAS), 2025.</div>
+        </div>
+
+        <div class="card">
+            <a href="docs/ISCAS2025_DPAcc.pdf" class="pub-title">DPAcc: an FPGA-Based Differential Privacy Acceleration Framework</a>
+            <div class="pub-authors">Ao Dong, Yuxiang Wang, Pengyang Li, Yifei Tian, Xiaobai Chen, <b>Jieming Yin</b></div>
+            <div class="venue-text">IEEE International Symposium on Circuits and Systems (ISCAS), 2025.</div>
+        </div>
+
+        <div class="card">
+            <a href="docs/ISCAS2025_CAMC.pdf" class="pub-title">CAMC: A Multi-Chiplet Accelerator With Heterogeneous Memory-Based Computing Architecture for DNN Training</a>
+            <div class="pub-authors">Xiaobai Chen, Hao Dong, Jiacheng Mei, Jun Li, Yifei Tian, <b>Jieming Yin</b>, Fu Xiao</div>
+            <div class="venue-text">IEEE International Symposium on Circuits and Systems (ISCAS), 2025.</div>
+        </div>
+
+        <div class="card">
+            <a href="docs/DATE2025.pdf" class="pub-title">CoupledCB: Eliminating Wasted Pages in Copyback-based Garbage Collection for SSDs</a>
+            <div class="pub-authors">Jun Li, Xiaofei Xu, Zhibing Sha, Xiaobai Chen, <b>Jieming Yin</b>, Jianwei Liao</div>
+            <div class="venue-text">Design, Automation and Test in Europe Conference (DATE), 2025. <span class="badge badge-ccf-b">CCF-B</span></div>
+        </div>
+
+        <div class="card">
+            <a href="https://ieeexplore.ieee.org/abstract/document/11267119" class="pub-title">MOA: Efficient Scene-aware Multi-object Arrangement in VR</a>
+            <div class="pub-authors">Xuehuai Shi, Yuhan Duan, Ziteng Wang, Jian Wu, Zhiwen Shao, <b>Jieming Yin</b>, Lili Wang</div>
+            <div class="venue-text">IEEE Transactions on Visualization and Computer Graphics (TVCG), 2025. <span class="badge badge-ccf-a">CCF-A</span></div>
+        </div>
+
+        <div class="card">
+            <a href="docs/TVCG2025.pdf" class="pub-title">Audio-visual aware Foveated Rendering</a>
+            <div class="pub-authors">Xuehuai Shi, Yucheng Li, Jiaheng Li, Jian Wu, <b>Jieming Yin</b>, Xiaobai Chen, Lili Wang</div>
+            <div class="venue-text">IEEE Transactions on Visualization and Computer Graphics (TVCG), 2025. <span class="badge badge-ccf-a">CCF-A</span></div>
+        </div>
+
+        <div class="year-header">2024</div>
+        <div class="card">
+            <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=10330679" class="pub-title">Rubick: A Unified Infrastructure for Analyzing, Exploring, and Implementing Spatial Architectures via Dataflow Decomposition</a>
+            <div class="pub-authors">Liqiang Lu, Zizhang Luo, Size Zheng, <b>Jieming Yin</b>, Jason Cong, Yun Liang, Jianwei Yin</div>
+            <div class="venue-text">IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems (TCAD) 43(4): 1177-1190, 2024. <span class="badge badge-ccf-a">CCF-A</span></div>
+        </div>
+
+        <div class="year-header">2023</div>
+        <div class="card">
+            <a href="docs/MICRO2023.pdf" class="pub-title">QuCT: A Framework for Analyzing Quantum Circuit by Extracting Contextual and Topological Features</a>
+            <div class="pub-authors">Siwei Tan, Congliang Lang, Liang Xiang, Shudi Wang, Xinghui Jia, Ziqi Tan, Tingting Li, <b>Jieming Yin</b>, Yongheng Shang, Andre Python, Liqiang Lu, Jianwei Yin</div>
+            <div class="venue-text">56th IEEE/ACM International Symposium on Microarchitecture (MICRO), 2023. <span class="badge badge-ccf-a">CCF-A</span></div>
+        </div>
+
+        <div class="card">
+            <a href="https://arxiv.org/abs/2302.11256" class="pub-title">Monad: Towards Cost-effective Specialization for Chiplet-based Spatial Accelerators</a>
+            <div class="pub-authors">Xiaochen Hao, Zijian Ding, <b>Jieming Yin</b>, Yuan Wang, Yun Liang</div>
+            <div class="venue-text">42nd IEEE/ACM International Conference on Computer-Aided Design (ICCAD), 2023. <span class="badge badge-ccf-b">CCF-B</span></div>
+        </div>
+
+        <div class="card">
+            <a href="docs/ICML2023.pdf" class="pub-title">COLA: Orchestrating Error Coding and Learning for Robust Neural Network Inference Against Hardware Defects</a>
+            <div class="pub-authors">Anlan Yu, Ning Lyu, <b>Jieming Yin</b>, Zhiyuan Yan, Wujie Wen</div>
+            <div class="venue-text">40th International Conference on Machine Learning (ICML), 2023. <span class="badge badge-ccf-a">CCF-A</span></div>
+        </div>
+
+        <div class="card">
+            <a href="docs/DAC2023.pdf" class="pub-title">Rubick: A Synthesis Framework for Spatial Architectures via Dataflow Decomposition</a>
+            <div class="pub-authors">Zizhang Luo, Liqiang Lu, Size Zheng, <b>Jieming Yin</b>, Jason Cong, Jianwei Yin, Yun Liang</div>
+            <div class="venue-text">60th Annual Design Automation Conference (DAC), 2023. <span class="badge badge-ccf-a">CCF-A</span></div>
+        </div>
+
+        <div class="card">
+            <a href="docs/ISCAS2023.pdf" class="pub-title">CompoundEye: A 0.24-4.17 TOPS Scalable Multi-Node DNN Processor for Image Recognition</a>
+            <div class="pub-authors">Xiaobai Chen, Qiurun Hu, Fu Xiao, <b>Jieming Yin</b></div>
+            <div class="venue-text">IEEE International Symposium on Circuits and Systems (ISCAS), 2023.</div>
+        </div>
+
+        <div class="card">
+            <a href="docs/HPCA2023.pdf" class="pub-title">Trans-FW: Short Circuiting Page Table Walk in Multi-GPU Systems via Remote Forwarding</a>
+            <div class="pub-authors">Bingyao Li, <b>Jieming Yin</b>, Anup Holey, Youtao Zhang, Jun Yang, Xulong Tang</div>
+            <div class="venue-text">29th IEEE International Symposium on High-Performance Computer Architecture (HPCA), 2023. <span class="badge badge-ccf-a">CCF-A</span></div>
+        </div>
+
+        <div class="card">
+            <a href="docs/USENIX2023.pdf" class="pub-title">NeuroPots: Realtime Proactive Defense against Bit-Flip Attacks in Neural Networks</a>
+            <div class="pub-authors">Qi Liu, <b>Jieming Yin</b>, Wujie Wen, Chengmo Yang, Shi Sha</div>
+            <div class="venue-text">32nd USENIX Security Symposium (USENIX-Security), 2023. <span class="badge badge-ccf-a">CCF-A</span></div>
+        </div>
+
+        <div class="year-header">2022</div>
+        <div class="card">
+            <a href="https://arxiv.org/abs/2209.11904" class="pub-title">CryptoGCN: Fast and Scalable Homomorphically Encrypted Graph Convolutional Network Inference</a>
+            <div class="pub-authors">Ran Ran, Nuo Xu, Wei Wang, Quan Gang, <b>Jieming Yin</b>, Wujie Wen</div>
+            <div class="venue-text">36th Conference on Neural Information Processing Systems (NeurIPS), 2022. <span class="badge badge-ccf-a">CCF-A</span></div>
+        </div>
+
+        <div class="card">
+            <a href="https://ieeexplore.ieee.org/document/9869866" class="pub-title">Design Challenges of Intra- and Inter- Chiplet Interconnection</a>
+            <div class="pub-authors">Chixiao Chen, <b>Jieming Yin</b>, Yarui Peng, Maurizio Palesi, Wenxu Cao, Letian Huang, Amit Kumar Singh, Haocong Zhi, Xiaohang Wang</div>
+            <div class="venue-text">IEEE Design & Test, October 2022.</div>
+        </div>
+
+        <div class="year-header">2021</div>
+        <div class="card">
+            <a href="docs/MICRO2021.pdf" class="pub-title">Improving Address Translation in Multi-GPUs via Sharing and Spilling aware TLB Design</a>
+            <div class="pub-authors">Bingyao Li, <b>Jieming Yin</b>, Youtao Zhang, Xulong Tang</div>
+            <div class="venue-text">54th IEEE/ACM International Symposium on Microarchitecture (MICRO), 2021. <span class="badge badge-ccf-a">CCF-A</span></div>
+        </div>
+
+        <div class="card">
+            <a href="https://arxiv.org/abs/2105.01892" class="pub-title">TENET: A Framework for Modeling Tensor Dataflow Based on Relation-centric Notation</a>
+            <div class="pub-authors">Liqiang Lu, Naiqing Guan, Yuyue Wang, Liancheng Jia, Zizhang Luo, <b>Jieming Yin</b>, Jason Cong, Yun Liang</div>
+            <div class="venue-text">48th International Symposium on Computer Architecture (ISCA), 2021. <span class="badge badge-ccf-a">CCF-A</span></div>
+        </div>
+
+        <div class="card">
+            <a href="docs/DAC2021.pdf" class="pub-title">Distilling Arbitration Logic from Traces using Machine Learning: A Case Study on NoC</a>
+            <div class="pub-authors">Yuan Zhou, Hanyu Wang, <b>Jieming Yin</b>, Zhiru Zhang</div>
+            <div class="venue-text">58th Annual Design Automation Conference (DAC), 2021. <span class="badge badge-ccf-a">CCF-A</span></div>
+            <span class="award-text">🏆 Best Paper Candidate</span>
+        </div>
+
+        <div class="card">
+            <a href="docs/HPCA2021.pdf" class="pub-title">Designing a Cost-Effective Cache Replacement Policy using Machine Learning</a>
+            <div class="pub-authors">Subhash Sethumurugan, <b>Jieming Yin</b>, John Sartori</div>
+            <div class="venue-text">27th IEEE International Symposium on High-Performance Computer Architecture (HPCA), 2021. <span class="badge badge-ccf-a">CCF-A</span></div>
+        </div>
+
+        <div class="year-header">2020</div>
+        <div class="card">
+            <a href="docs/NOCS2020.pdf" class="pub-title">In-Network Memory Access Ordering for Heterogeneous Multicore Systems</a>
+            <div class="pub-authors"><b>Jieming Yin</b>, Antonia Zhai</div>
+            <div class="venue-text">14th IEEE/ACM International Symposium on Networks-on-Chip (NOCS), 2020.</div>
+            <span class="award-text">🏆 Best Paper Award</span>
+        </div>
+
+        <div class="card">
+            <a href="docs/DAC2020.pdf" class="pub-title">Kite: A Family of Heterogeneous Interposer Topologies Enabled via Accurate Interconnect Modeling</a>
+            <div class="pub-authors">Srikant Bharadwaj, <b>Jieming Yin</b>, Bradford M. Beckmann, Tushar Krishna</div>
+            <div class="venue-text">57th Annual Design Automation Conference (DAC), 2020. <span class="badge badge-ccf-a">CCF-A</span></div>
+        </div>
+
+        <div class="card">
+            <a href="docs/HPCA2020.pdf" class="pub-title">Experiences with ML-Driven Design: A NoC Case Study</a>
+            <div class="pub-authors"><b>Jieming Yin</b>, Subhash Sethumurugan, Yasuko Eckert, Alan Smith, Chintan Patel, Eric Morton, Mark Oskin, Natalie Enright Jerger, Gabriel H. Loh</div>
+            <div class="venue-text">26th IEEE International Symposium on High-Performance Computer Architecture (HPCA), 2020. <span class="badge badge-ccf-a">CCF-A</span></div>
+        </div>
+
+        <div class="year-header">2019</div>
+        <div class="card">
+            <a href="docs/IPDPS2019.pdf" class="pub-title">Northup: Divide-and-Conquer Programming in Systems with Heterogeneous Memories and Processors</a>
+            <div class="pub-authors">Shuai Che, <b>Jieming Yin</b></div>
+            <div class="venue-text">33rd IEEE International Parallel & Distributed Processing Symposium (IPDPS), 2019. <span class="badge badge-ccf-b">CCF-B</span></div>
+        </div>
+
+        <div class="card">
+            <a href="https://www.sciencedirect.com/science/article/pii/S0167926017305576" class="pub-title">An orchestrated NoC prioritization mechanism for heterogeneous CPU-GPU systems</a>
+            <div class="pub-authors">Xiangwei Cai, <b>Jieming Yin</b>, Pingqiang Zhou</div>
+            <div class="venue-text">Integration, Volume 65, March 2019.</div>
+        </div>
+
+        <div class="year-header">2018</div>
+        <div class="card">
+            <a href="docs/ISCA2018.pdf" class="pub-title">Modular Routing Design for Chiplet-based Systems</a>
+            <div class="pub-authors"><b>Jieming Yin</b>, Zhifeng Lin, Onur Kayiran, Matthew Poremba, Muhammad Shoaib Bin Altaf, Natalie Enright Jerger, Gabriel H. Loh</div>
+            <div class="venue-text">45th International Symposium on Computer Architecture (ISCA), 2018. <span class="badge badge-ccf-a">CCF-A</span></div>
+            <span class="award-text">📰 Featured in IEEE Spectrum</span>
+        </div>
+
+        <div class="card">
+            <a href="docs/AIDArc2018.pdf" class="pub-title">Toward More Efficient NoC Arbitration: A Deep Reinforcement Learning Approach</a>
+            <div class="pub-authors"><b>Jieming Yin</b>, Yasuko Eckert, Shuai Che, Mark Oskin, Gabriel H. Loh</div>
+            <div class="venue-text">The 1st International Workshop on AI-assisted Design for Architecture (AIDArc), 2018.</div>
+        </div>
+
+        <div class="card">
+            <a href="docs/HPCA2018.pdf" class="pub-title">Lost in Abstraction: Pitfalls of Analyzing GPUs at the Intermediate Language Level</a>
+            <div class="pub-authors">Anthony Gutierrez, Bradford Beckmann, Alexandru Dutu, Joseph Gross, John Kalamatianos, Onur Kayiran, Michael LeBeane, Matthew Poremba, Brandon Potter, Sooraj Puthoor, Mark Wyse, <b>Jieming Yin</b>, Akshay Jain, Tim Rogers, Xianwei Zhang, Matt Sinclair</div>
+            <div class="venue-text">24th IEEE International Symposium on High-Performance Computer Architecture (HPCA), 2018. <span class="badge badge-ccf-a">CCF-A</span></div>
+        </div>
+
+        <div class="year-header">2017</div>
+        <div class="card">
+            <a href="docs/ISCA2017.pdf" class="pub-title">There and Back Again: Optimizing the Interconnect in Networks of Memory Cubes</a>
+            <div class="pub-authors">Matthew Poremba, Itir Akgun, <b>Jieming Yin</b>, Onur Kayiran, Yuan Xie, Gabriel H. Loh</div>
+            <div class="venue-text">44th International Symposium on Computer Architecture (ISCA), 2017. <span class="badge badge-ccf-a">CCF-A</span></div>
+        </div>
+
+        <div class="year-header">2016</div>
+        <div class="card">
+            <a href="docs/HPCA2016.pdf" class="pub-title">Efficient Synthetic Traffic Models for Large, Complex SoCs</a>
+            <div class="pub-authors"><b>Jieming Yin</b>, Onur Kayiran, Matthew Poremba, Natalie Enright Jerger, Gabriel H. Loh</div>
+            <div class="venue-text">22nd International Symposium on High Performance Computer Architecture (HPCA), 2016. <span class="badge badge-ccf-a">CCF-A</span></div>
+        </div>
+
+        <div class="year-header">2015 and Before</div>
+        <div class="card">
+            <a href="docs/IPDPS2014.pdf" class="pub-title">Energy-Efficient Time-Division Multiplexed Hybrid-Switched NoC for Heterogeneous Multicore Systems</a>
+            <div class="pub-authors"><b>Jieming Yin</b>, Pingqiang Zhou, Sachin S. Sapatnekar, Antonia Zhai</div>
+            <div class="venue-text">28th IEEE International Parallel & Distributed Processing Symposium (IPDPS), 2014. <span class="badge badge-ccf-b">CCF-B</span></div>
+        </div>
+
+        <div class="card">
+            <a href="docs/ISLPED2012.pdf" class="pub-title">Energy Efficient Non-Minimal Path On-chip Interconnection Network for Heterogeneous Multicore Systems</a>
+            <div class="pub-authors"><b>Jieming Yin</b>, Pingqiang Zhou, Anup P. Holey, Sachin S. Sapatnekar, Antonia Zhai</div>
+            <div class="venue-text">The International Symposium on Low Power Electronics and Design (ISLPED), 2012.</div>
+        </div>
+
+        <div class="card">
+            <a href="docs/ISLPED2011.pdf" class="pub-title">NoC Frequency Scaling with Flexible-Pipeline Routers</a>
+            <div class="pub-authors">Pingqiang Zhou, <b>Jieming Yin</b>, Antonia Zhai, Sachin S. Sapatnekar</div>
+            <div class="venue-text">The International Symposium on Low Power Electronics and Design (ISLPED), 2011.</div>
+        </div>
+
+        <div class="card">
+            <a href="docs/techcon11.pdf" class="pub-title">NoC Design and Performance Optimization</a>
+            <div class="pub-authors">Pingqiang Zhou, <b>Jieming Yin</b>, Antonia Zhai, Sachin S. Sapatnekar</div>
+            <div class="venue-text">SRC TECHCON, 2011.</div>
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; 2026 Jieming Yin • NJUPT Computer Science
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('mobile-menu');
+        const navList = document.getElementById('nav-list');
+
+        menuToggle.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
