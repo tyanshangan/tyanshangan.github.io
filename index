@@ -11,13 +11,12 @@
             --bg: #ffffff; 
             --text: #1a1a1a; 
             --muted: #64748b; 
-            --accent: #7c3aed;      /* 主紫色 */
-            --accent2: #8b5cf6;    /* 辅助紫 */
-            --accent-soft: #f5f3ff;/* 淡紫背景 */
+            --accent: #7c3aed;      
+            --accent2: #8b5cf6;    
+            --accent-soft: #f5f3ff;
             --card-border: #f1f5f9; 
         }
 
-        /* --- 1. Page Fade-In Animation --- */
         @keyframes fadeInPage {
             from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
@@ -33,7 +32,6 @@
             animation: fadeInPage 0.8s ease-out forwards;
         }
 
-        /* --- 2. Navigation & Hover Effects --- */
         nav { 
             position: sticky; 
             top: 0; 
@@ -75,7 +73,6 @@
         .nav-links a.active { color: var(--accent); font-size: 1.25rem; }
         .nav-links a.active::after { width: 100%; }
 
-        /* Mobile Menu Toggle */
         .menu-toggle {
             display: none;
             font-size: 1.5rem;
@@ -83,7 +80,6 @@
             cursor: pointer;
         }
 		
-        /* --- 3. Hero Section --- */
         .hero { display: flex; align-items: center; gap: 50px; margin: 80px 0; }
         .profile-img { 
             width: 180px; 
@@ -114,7 +110,6 @@
         }
         .social-badge:hover { background: var(--accent); color: white; transform: translateY(-2px); }
 
-        /* --- 4. Content Sections --- */
         section { margin-bottom: 60px; }
         h2 { font-size: 1.5rem; font-weight: 700; margin: 45px 0 20px; display: flex; align-items: center; gap: 15px; border-left: 6px solid var(--accent); padding-left: 15px;}
         h2::after { content: ""; height: 1px; flex-grow: 1; background: var(--card-border); }
@@ -153,7 +148,6 @@
 		
         footer { margin-top: 80px; padding: 40px 0; border-top: 1px solid var(--card-border); text-align: center; color: var(--muted); font-size: 0.85rem; }
 
-        /* --- RESPONSIVE QUERIES --- */
         @media (max-width: 768px) {
             .menu-toggle { display: block; }
             
@@ -202,67 +196,66 @@
 
     <div class="container">
         <header class="hero">
-            <img src="images/avatar.jpg" alt="My Avatar" class="profile-img">
+            <img src="images/avatar.jpg" alt="Avatar" class="profile-img">
             <div class="hero-text">
-                <h1>Hi, I'm Alex</h1>
-                <p class="subtitle">Student & Tech Enthusiast</p>
-                <p class="subtitle">Sharing ideas, code, and daily thoughts</p>
+                <h1>Hi, I'm YourName</h1>
+                <p class="subtitle">Student / Life Blogger</p>
+                <p class="subtitle">记录学习 · 分享生活 · 持续成长</p>
                 <div class="social-row">
-                    <a href="mailto:yourmail@example.com" class="social-badge"><i class="fas fa-envelope"></i> Email</a>
-                    <a href="#" class="social-badge"><i class="fab fa-github"></i> GitHub</a>
-					<a href="#" class="social-badge"><i class="fab fa-twitter"></i> Twitter</a>
+                    <a href="mailto:youremail@qq.com" class="social-badge"><i class="fas fa-envelope"></i> Email</a>
+                    <a href="https://github.com/你的github用户名" class="social-badge"><i class="fab fa-github"></i> GitHub</a>
                 </div>
             </div>
         </header>
 
         <div class="hiring-box">
-            <p style="margin-top: 0; color: var(--accent2); font-size: 1.25rem; font-weight: 800">Welcome to My Blog</p>
+            <p style="margin-top: 0; color: var(--accent2); font-size: 1.25rem; font-weight: 800">欢迎来到我的个人博客</p>
             <p style="font-size: 0.95rem; color: var(--muted); font-weight: 500" >
-				I write about programming, learning, life, and technology.
-                Feel free to explore my articles, projects, and daily notes.
+                在这里记录学习笔记、生活感悟、编程心得与日常碎片。
+                保持热爱，慢慢变好。
             </p>
         </div>
 
         <section id="about">
-            <h2>About Me</h2>
+            <h2>关于我</h2>
             <p>
-                I'm a student passionate about coding, design, and technology.
-                I love learning new things, building small projects, and sharing my journey through this blog.
+                一名普通学生，喜欢安静、喜欢记录、喜欢慢慢学习新事物。
+                热爱编程、设计、阅读和生活里的小美好。
             </p>
             <p>
-                My interests include front-end development, Python programming, UI/UX design,
-                and personal growth. I believe in consistent learning and open sharing.
+                建立这个博客，用来沉淀知识、整理笔记、记录成长轨迹，
+                也希望能和同路人一起交流进步。
             </p>
             
             <div class="tag-container">
-                <span class="tag">Student</span>
-                <span class="tag">Coding</span>
-                <span class="tag">Design</span>
-                <span class="tag">Learning</span>
-				<span class="tag">Tech</span>
-                <span class="tag">Life</span>
+                <span class="tag">学生</span>
+                <span class="tag">编程</span>
+                <span class="tag">学习</span>
+                <span class="tag">生活</span>
+                <span class="tag">记录</span>
+                <span class="tag">成长</span>
             </div>
         </section>
 		
         <section id="recent">
-            <h2>Recent Updates</h2>
+            <h2>近期动态</h2>
             <div class="item">
-                <span class="item-title">Started learning Web Development</span>
-                <span class="item-meta">2025 | HTML, CSS, JavaScript</span>
+                <span class="item-title">搭建个人博客网站</span>
+                <span class="item-meta">2026 · GitHub Pages 部署</span>
             </div>
             <div class="item">
-                <span class="item-title">Built my first personal website</span>
-                <span class="item-meta">2025 | Personal Blog</span>
+                <span class="item-title">开始系统学习前端开发</span>
+                <span class="item-meta">2026 · HTML / CSS / JS</span>
             </div>
             <div class="item">
-                <span class="item-title">Sharing daily learning notes</span>
-                <span class="item-meta">Keep going, stay curious</span>
+                <span class="item-title">坚持每日学习与记录</span>
+                <span class="item-meta">长期坚持 · 静待花开</span>
             </div>
         </section>
     </div>
 
     <footer>
-        &copy; 2025 My Personal Blog • All rights reserved
+        &copy; 2026 My Personal Blog · All Rights Reserved
     </footer>
 
     <script>
