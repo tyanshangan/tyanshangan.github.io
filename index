@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Blog | Home</title>
+    <title>tyanshangan's Blog | Home</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -180,7 +180,7 @@
 
     <nav>
         <div class="container nav-content">
-            <div style="font-weight: 800; color: var(--accent); font-size: 1.4rem; cursor: pointer;">My Blog</div>
+            <div style="font-weight: 800; color: var(--accent); font-size: 1.4rem; cursor: pointer;">tyanshangan's Blog</div>
             <div class="menu-toggle" id="mobile-menu">
                 <i class="fas fa-bars"></i>
             </div>
@@ -196,14 +196,14 @@
 
     <div class="container">
         <header class="hero">
-            <img src="images/avatar.jpg" alt="Avatar" class="profile-img">
+            <img src="images/avatar.jpg" alt="tyanshangan's Avatar" class="profile-img">
             <div class="hero-text">
-                <h1>Hi, I'm YourName</h1>
+                <h1>Hi, I'm tyanshangan</h1>
                 <p class="subtitle">Student / Life Blogger</p>
                 <p class="subtitle">记录学习 · 分享生活 · 持续成长</p>
                 <div class="social-row">
-                    <a href="mailto:youremail@qq.com" class="social-badge"><i class="fas fa-envelope"></i> Email</a>
-                    <a href="https://github.com/你的github用户名" class="social-badge"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="mailto:yantianan@163.com" class="social-badge"><i class="fas fa-envelope"></i> Email</a>
+                    <a href="https://github.com/tyanshangan" class="social-badge"><i class="fab fa-github"></i> GitHub</a>
                 </div>
             </div>
         </header>
@@ -255,7 +255,7 @@
     </div>
 
     <footer>
-        &copy; 2026 My Personal Blog · All Rights Reserved
+        &copy; 2026 tyanshangan's Personal Blog · All Rights Reserved
     </footer>
 
     <script>
